@@ -1,0 +1,13 @@
+<div class="layout-column">
+    <div class="margin-0-4-0-0">
+        <h3>Choose what to display:</h3>
+        <div>
+            <input type="checkbox" name="cx-ds" [checked]="display.displaySize" (click)="toggleDisplaySize()">
+            <label for="cx-ds">Display size</label>
+        </div>
+        <div>
+            <input type="checkbox" name="cx-dt" [checked]="display.displayType" (click)="toggleDisplayType()">
+            <label for="cx-dt">Display type</label>
+        </div>
+    </div>
+</div>

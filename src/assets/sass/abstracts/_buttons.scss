@@ -1,0 +1,207 @@
+@import "../abstracts/color";
+
+$types: primary, secondary, primary-ghost, destructive;
+$sizes: small, normal, big;
+
+/******************************/
+/*            Root            */
+/******************************/
+.btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 5px;
+    border: none;
+    box-shadow: inset 0 0 0 1px $color-BAF01; // this + border:none = inner border
+    font-family: inherit;
+}
+
+/******************************/
+/*          Content           */
+/******************************/
+@mixin btn-icon-left($size, $margin) {
+    mat-icon {
+        width: $size;
+        height: $size;
+        margin-right: $margin;
+    }
+}
+
+@mixin btn-icon-right($size, $margin) {
+    mat-icon {
+        width: $size;
+        height: $size;
+        margin-left: $margin;
+    }
+}
+
+@mixin btn-icon-only($size, $radius, $padding) {
+    border-radius: $radius;
+    padding: $padding;
+    mat-icon {
+        width: $size;
+        height: $size;
+    }
+}
+
+@mixin btn-page-indicator($radius, $padding) {
+    border-radius: $radius;
+    padding: $padding;
+
+    background: $color-BL;
+    color: $color-GBC02;
+    border: none;
+    box-shadow: inset 0 0 0 1px $color-GBC02;
+    &:hover,
+    &:focus {
+        background: $color-BA;
+        color: $color-BL;
+        box-shadow: inset 0 0 0 1px $color-BAF01;
+        cursor: pointer;
+        outline: none; // prevent default outline from user agent stylesheet
+    }
+    &.btn-selected {
+        background: $color-VE;
+        color: $color-BL;
+        border: none;
+        box-shadow: inset 0 0 0 1px $color-VE;
+    }
+}
+
+/******************************/
+/*            Type            */
+/******************************/
+@each $type in $types {
+    .btn-#{$type} {
+        @if $type == primary {
+            background: $color-BA;
+            color: $color-BL;
+            &:hover,
+            &:focus {
+                background: $color-BAF01;
+                cursor: pointer;
+                outline: none; // prevent default outline from user agent stylesheet
+            }
+            &:disabled {
+                background: $color-GBC02;
+                border: none;
+                box-shadow: inset 0 0 0 1px $color-GBC02;
+            }
+        } @else if $type == secondary {
+            background: $color-BL;
+            color: $color-BA;
+            box-shadow: inset 0 0 0 1px $color-BA;
+            &:hover,
+            &:focus {
+                background: $color-BL;
+                color: $color-BAF01;
+                box-shadow: inset 0 0 0 1px $color-BAF01;
+                cursor: pointer;
+                outline: none; // prevent default outline from user agent stylesheet
+            }
+            &:disabled {
+                background: $color-BL;
+                color: $color-GBC02;
+                border: none;
+                box-shadow: inset 0 0 0 1px $color-GBC02;
+            }
+        } @else if $type == primary-ghost {
+            background: transparent;
+            color: $color-BL;
+            box-shadow: inset 0 0 0 1px $color-BL;
+            &:hover,
+            &:focus {
+                background: $color-BL;
+                color: $color-BAF01;
+                box-shadow: inset 0 0 0 1px $color-BAF01;
+                cursor: pointer;
+                outline: none; // prevent default outline from user agent stylesheet
+            }
+            &:disabled {
+                background: $color-GBC02;
+                color: $color-BL;
+                border: none;
+                box-shadow: inset 0 0 0 1px $color-GBC02;
+            }
+        } @else if $type == destructive {
+            background: $color-VER;
+            color: $color-BL;
+            box-shadow: inset 0 0 0 1px $color-VERF01;
+            &:hover,
+            &:focus {
+                background: $color-VERF01;
+                color: $color-BL;
+                box-shadow: inset 0 0 0 1px $color-VERF01;
+                cursor: pointer;
+                outline: none; // prevent default outline from user agent stylesheet
+            }
+            &:disabled {
+                background: $color-GBC02;
+                color: $color-BL;
+                border: none;
+                box-shadow: inset 0 0 0 1px $color-GBC02;
+            }
+        } @else {
+            @error "Type not known #{$type}";
+        }
+    }
+}
+
+/******************************/
+/*            Size            */
+/******************************/
+@each $size in $sizes {
+    .btn-#{$size} {
+        @if $size == normal {
+            font-size: 16px;
+            line-height: 18px;
+            padding: 15px 24px 15px 24px;
+            &.btn-icon-left {
+                @include btn-icon-left(18px, 16px);
+            }
+            &.btn-icon-right {
+                @include btn-icon-right(18px, 16px);
+            }
+            &.btn-icon-only {
+                @include btn-icon-only(18px, 40px, 15px);
+            }
+            &.btn-page-indicator {
+                @include btn-page-indicator(40px, 15px);
+            }
+        } @else if $size == big {
+            font-size: 20px;
+            line-height: 24px;
+            padding: 20px 32px 20px 32px;
+            &.btn-icon-left {
+                @include btn-icon-left(24px, 16px);
+            }
+            &.btn-icon-right {
+                @include btn-icon-right(24px, 16px);
+            }
+            &.btn-icon-only {
+                @include btn-icon-only(24px, 40px, 20px);
+            }
+            &.btn-page-indicator {
+                @include btn-page-indicator(40px, 20px);
+            }
+        } @else if $size == small {
+            font-size: 14px;
+            line-height: 16px;
+            padding: 12px;
+            &.btn-icon-left {
+                @include btn-icon-left(16px, 8px);
+            }
+            &.btn-icon-right {
+                @include btn-icon-right(16px, 8px);
+            }
+            &.btn-icon-only {
+                @include btn-icon-only(16px, 40px, 12px);
+            }
+            &.btn-page-indicator {
+                @include btn-page-indicator(40px, 12px);
+            }
+        } @else {
+            @error "Size not known #{$size}";
+        }
+    }
+}

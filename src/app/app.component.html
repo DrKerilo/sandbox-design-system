@@ -1,0 +1,7 @@
+<div class="flex layout-row margin">
+    <div class="layout-column">
+        <app-menu [display]="display" (displayChange)="onDisplayChange($event)"></app-menu>
+        <app-button-selector></app-button-selector>
+    </div>
+    <app-buttons [display]="display"></app-buttons>
+</div>

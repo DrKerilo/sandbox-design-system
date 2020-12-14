@@ -1,0 +1,29 @@
+<div *ngIf="!isPageIndicator">
+    <ng-container [ngSwitch]="selectedPicto">
+        <div class="container-button padding" [ngClass]="selectedType === options.types[2] ? 'container-button-ghost' : ''">
+            <ng-container *ngSwitchCase="options.pictos[0]">
+                <button ngClass="btn btn-{{selectedType}} btn-{{selectedSize}}" [disabled]="isDisabled">Text only</button>
+            </ng-container>
+            <ng-container *ngSwitchCase="options.pictos[1]">
+                <button ngClass="btn btn-{{selectedType}} btn-{{selectedSize}} btn-{{selectedPicto}}" [disabled]="isDisabled">
+                    <mat-icon svgIcon="check"></mat-icon>Icon left
+                </button>
+            </ng-container>
+            <ng-container *ngSwitchCase="options.pictos[2]">
+                <button ngClass="btn btn-{{selectedType}} btn-{{selectedSize}} btn-{{selectedPicto}}" [disabled]="isDisabled">
+                    Icon-right<mat-icon svgIcon="check"></mat-icon></button>
+            </ng-container>
+            <ng-container *ngSwitchCase="options.pictos[3]">
+                <button ngClass="btn btn-{{selectedType}} btn-{{selectedSize}} btn-{{selectedPicto}}" [disabled]="isDisabled">
+                    <mat-icon svgIcon="check"></mat-icon>
+                </button>
+            </ng-container>
+            <ng-container *ngSwitchDefault>Error!</ng-container>
+        </div>
+    </ng-container>
+</div>
+<div *ngIf="isPageIndicator">
+    <div class="container-button padding">
+        <button [ngClass]="[isPageSelected ? 'btn-selected' : '', 'btn', 'btn-page-indicator', 'btn-' + selectedSize]" [disabled]="isDisabled">01</button>
+    </div>
+</div>

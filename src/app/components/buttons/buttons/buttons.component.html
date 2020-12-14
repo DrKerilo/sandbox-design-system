@@ -1,0 +1,37 @@
+<div class="flex layout-row">
+    <div *ngIf="display.displaySize" class="margin-0-4-0-4">
+        <h1>Size (type primary)</h1>
+        <div *ngFor="let size of sizes">
+            <h2>{{size.toUpperCase()}}</h2>
+            <div class="layout-row layout-align-center-center">
+                <button class="btn btn-primary margin" ngClass="btn-{{size}}">Text only</button>
+                <button class="btn btn-primary btn-icon-left margin" ngClass="btn-{{size}}">
+                    <mat-icon svgIcon="check"></mat-icon>Icon left
+                </button>
+                <button class="btn btn-primary btn-icon-right margin" ngClass="btn-{{size}}">
+                    Icon-right<mat-icon svgIcon="check"></mat-icon></button>
+                <button class="btn btn-primary btn-icon-only margin" ngClass="btn-{{size}}">
+                    <mat-icon svgIcon="check"></mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="display.displayType" class="margin-0-4-0-4">
+        <h1>Type (normal size)</h1>
+        <div *ngFor="let type of types">
+            <h2>{{type.toUpperCase()}}</h2>
+            <div class="layout-row layout-align-center-center" [ngClass]="type === 'primary-ghost' ? 'bg-ghost' : ''">
+                <button class="btn btn-normal margin" ngClass="btn-{{type}}">Text only</button>
+                <button class="btn btn-normal btn-icon-left margin" ngClass="btn-{{type}}">
+                    <mat-icon svgIcon="check"></mat-icon>Icon left
+                </button>
+                <button class="btn btn-normal btn-icon-right margin" ngClass="btn-{{type}}">
+                    Icon-right<mat-icon svgIcon="check"></mat-icon></button>
+                <button class="btn btn-normal btn-icon-only margin" ngClass="btn-{{type}}">
+                    <mat-icon svgIcon="check"></mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

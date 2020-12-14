@@ -1,0 +1,69 @@
+<h3>Button selector:</h3>
+<div class="margin">
+    <label for="types">Type: </label>
+    <select name="types" [(ngModel)]="selectedType" (ngModelChange)="onChangeType($event)" [disabled]="isPageIndicator">
+        <option [value]="type" *ngFor="let type of options.types">{{type}}</option>
+    </select>
+</div>
+<div class="margin">
+    <label for="sizes">Size: </label>
+    <select name="sizes" [(ngModel)]="selectedSize" (ngModelChange)="onChangeSize($event)">
+        <option [value]="size" *ngFor="let size of options.sizes">{{size}}</option>
+    </select>
+</div>
+<div class="margin">
+    <label for="pictos">Picto: </label>
+    <select name="pictos" [(ngModel)]="selectedPicto" (ngModelChange)="onChangePicto($event)" [disabled]="isPageIndicator">
+        <option [value]="picto" *ngFor="let picto of options.pictos">{{picto}}</option>
+    </select>
+</div>
+<div class="margin">
+    <label for="states">Disable: </label>
+    <select name="states" [(ngModel)]="isDisabled" (ngModelChange)="onChangeState($event)" [disabled]="isPageIndicator">
+        <option [value]="state" *ngFor="let state of options.isDisabled">{{state}}</option>
+    </select>
+</div>
+<div class="margin">
+    <label for="pageInd">Page indicator: </label>
+    <select name="pageInd" [(ngModel)]="isPageIndicator" (ngModelChange)="onChangePageInd($event)">
+        <option [value]="pageIndicator" *ngFor="let pageIndicator of options.isPageIndicator">{{pageIndicator}}</option>
+    </select>
+</div>
+<div class="margin" *ngIf="isPageIndicator">
+    <label for="pageSel">Page selected: </label>
+    <select name="pageSel" [(ngModel)]="isPageSelected" (ngModelChange)="onChangePageSelected($event)">
+        <option [value]="pageSelected" *ngFor="let pageSelected of options.isPageSelected">{{pageSelected}}</option>
+    </select>
+</div>
+<br>
+<div>
+    <div *ngIf="!isPageIndicator">
+        <ng-container [ngSwitch]="selectedPicto">
+            <div class="container-button padding" [ngClass]="selectedType === options.types[2] ? 'container-button-ghost' : ''">
+                <ng-container *ngSwitchCase="options.pictos[0]">
+                    <button ngClass="btn btn-{{selectedType}} btn-{{selectedSize}}" [disabled]="isDisabled">Text only</button>
+                </ng-container>
+                <ng-container *ngSwitchCase="options.pictos[1]">
+                    <button ngClass="btn btn-{{selectedType}} btn-{{selectedSize}} btn-{{selectedPicto}}" [disabled]="isDisabled">
+                        <mat-icon svgIcon="check"></mat-icon>Icon left
+                    </button>
+                </ng-container>
+                <ng-container *ngSwitchCase="options.pictos[2]">
+                    <button ngClass="btn btn-{{selectedType}} btn-{{selectedSize}} btn-{{selectedPicto}}" [disabled]="isDisabled">
+                        Icon-right<mat-icon svgIcon="check"></mat-icon></button>
+                </ng-container>
+                <ng-container *ngSwitchCase="options.pictos[3]">
+                    <button ngClass="btn btn-{{selectedType}} btn-{{selectedSize}} btn-{{selectedPicto}}" [disabled]="isDisabled">
+                        <mat-icon svgIcon="check"></mat-icon>
+                    </button>
+                </ng-container>
+                <ng-container *ngSwitchDefault>Error!</ng-container>
+            </div>
+        </ng-container>
+    </div>
+    <div *ngIf="isPageIndicator">
+        <div class="container-button padding">
+            <button [ngClass]="[isPageSelected ? 'btn-selected' : '', 'btn', 'btn-page-indicator', 'btn-' + selectedSize]" [disabled]="isDisabled">01</button>
+        </div>
+    </div>
+</div>
