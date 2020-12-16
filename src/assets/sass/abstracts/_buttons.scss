@@ -1,7 +1,58 @@
-@import "../abstracts/color";
+@import "../abstracts/colors";
 
 $types: primary, secondary, primary-ghost, destructive;
 $sizes: small, normal, big;
+
+/******************************/
+/*       Color mapping        */
+/******************************/
+$btn_box-shadow: $color-BAF01;
+
+$btn-page-indicator_background: $color-BL;
+$btn-page-indicator_color: $color-GBC02;
+$btn-page-indicator_box-shadow: $color-GBC02;
+$btn-page-indicator_hover_background: $color-BA;
+$btn-page-indicator_hover_color: $color-BL;
+$btn-page-indicator_hover_box-shadow: $color-BAF01;
+$btn-page-indicator_btn-selected_background: $color-VE;
+$btn-page-indicator_btn-selected_color: $color-BL;
+$btn-page-indicator_btn-selected_box-shadow: $color-VE;
+
+$btn-primary_background: $color-BA;
+$btn-primary_color: $color-BL;
+$btn-primary_hover_background: $color-BAF01;
+$btn-primary_disabled_background: $color-GBC02;
+$btn-primary_disabled_box-shadow: $color-GBC02;
+
+$btn-secondary_background: $color-BL;
+$btn-secondary_color: $color-BA;
+$btn-secondary_box-shadow: $color-BA;
+$btn-secondary_hover_background: $color-BL;
+$btn-secondary_hover_color: $color-BAF01;
+$btn-secondary_hover_box-shadow: $color-BAF01;
+$btn-secondary_disabled_background: $color-BL;
+$btn-secondary_disabled_color: $color-GBC02;
+$btn-secondary_disabled_box-shadow: $color-GBC02;
+
+$btn-primary-ghost_background: transparent;
+$btn-primary-ghost_color: $color-BL;
+$btn-primary-ghost_box-shadow: $color-BL;
+$btn-primary-ghost_hover_background: $color-BL;
+$btn-primary-ghost_hover_color: $color-BAF01;
+$btn-primary-ghost_hover_box-shadow: $color-BAF01;
+$btn-primary-ghost_disabled_background: $color-GBC02;
+$btn-primary-ghost_disabled_color: $color-BL;
+$btn-primary-ghost_disabled_box-shadow: $color-GBC02;
+
+$btn-destructive_background: $color-VER;
+$btn-destructive_color: $color-BL;
+$btn-destructive_box-shadow: $color-VERF01;
+$btn-destructive_hover_background: $color-VERF01;
+$btn-destructive_hover_color: $color-BL;
+$btn-destructive_hover_box-shadow: $color-VERF01;
+$btn-destructive_disabled_background: $color-GBC02;
+$btn-destructive_disabled_color: $color-BL;
+$btn-destructive_disabled_box-shadow: $color-GBC02;
 
 /******************************/
 /*            Root            */
@@ -12,7 +63,7 @@ $sizes: small, normal, big;
     align-items: center;
     border-radius: 5px;
     border: none;
-    box-shadow: inset 0 0 0 1px $color-BAF01; // this + border:none = inner border
+    box-shadow: inset 0 0 0 1px $btn_box-shadow; // this + border:none = inner border
     font-family: inherit;
 }
 
@@ -48,23 +99,23 @@ $sizes: small, normal, big;
     border-radius: $radius;
     padding: $padding;
 
-    background: $color-BL;
-    color: $color-GBC02;
+    background: $btn-page-indicator_background;
+    color: $btn-page-indicator_color;
     border: none;
-    box-shadow: inset 0 0 0 1px $color-GBC02;
+    box-shadow: inset 0 0 0 1px $btn-page-indicator_box-shadow;
     &:hover,
     &:focus {
-        background: $color-BA;
-        color: $color-BL;
-        box-shadow: inset 0 0 0 1px $color-BAF01;
+        background: $btn-page-indicator_hover_background;
+        color: $btn-page-indicator_hover_color;
+        box-shadow: inset 0 0 0 1px $btn-page-indicator_hover_box-shadow;
         cursor: pointer;
         outline: none; // prevent default outline from user agent stylesheet
     }
     &.btn-selected {
-        background: $color-VE;
-        color: $color-BL;
+        background: $btn-page-indicator_btn-selected_background;
+        color: $btn-page-indicator_btn-selected_color;
         border: none;
-        box-shadow: inset 0 0 0 1px $color-VE;
+        box-shadow: inset 0 0 0 1px $btn-page-indicator_btn-selected_box-shadow;
     }
 }
 
@@ -74,72 +125,72 @@ $sizes: small, normal, big;
 @each $type in $types {
     .btn-#{$type} {
         @if $type == primary {
-            background: $color-BA;
-            color: $color-BL;
+            background: $btn-primary_background;
+            color: $btn-primary_color;
             &:hover,
             &:focus {
-                background: $color-BAF01;
+                background: $btn-primary_hover_background;
                 cursor: pointer;
                 outline: none; // prevent default outline from user agent stylesheet
             }
             &:disabled {
-                background: $color-GBC02;
+                background: $btn-primary_disabled_background;
                 border: none;
-                box-shadow: inset 0 0 0 1px $color-GBC02;
+                box-shadow: inset 0 0 0 1px $btn-primary_disabled_box-shadow;
             }
         } @else if $type == secondary {
-            background: $color-BL;
-            color: $color-BA;
-            box-shadow: inset 0 0 0 1px $color-BA;
+            background: $btn-secondary_background;
+            color: $btn-secondary_color;
+            box-shadow: inset 0 0 0 1px $btn-secondary_box-shadow;
             &:hover,
             &:focus {
-                background: $color-BL;
-                color: $color-BAF01;
-                box-shadow: inset 0 0 0 1px $color-BAF01;
+                background: $btn-secondary_hover_background;
+                color: $btn-secondary_hover_color;
+                box-shadow: inset 0 0 0 1px $btn-secondary_hover_box-shadow;
                 cursor: pointer;
                 outline: none; // prevent default outline from user agent stylesheet
             }
             &:disabled {
-                background: $color-BL;
-                color: $color-GBC02;
+                background: $btn-secondary_disabled_background;
+                color: $btn-secondary_disabled_color;
                 border: none;
-                box-shadow: inset 0 0 0 1px $color-GBC02;
+                box-shadow: inset 0 0 0 1px $btn-secondary_disabled_box-shadow;
             }
         } @else if $type == primary-ghost {
-            background: transparent;
-            color: $color-BL;
-            box-shadow: inset 0 0 0 1px $color-BL;
+            background: $btn-primary-ghost_background;
+            color: $btn-primary-ghost_color;
+            box-shadow: inset 0 0 0 1px $btn-primary-ghost_box-shadow;
             &:hover,
             &:focus {
-                background: $color-BL;
-                color: $color-BAF01;
-                box-shadow: inset 0 0 0 1px $color-BAF01;
+                background: $btn-primary-ghost_hover_background;
+                color: $btn-primary-ghost_hover_color;
+                box-shadow: inset 0 0 0 1px $btn-primary-ghost_hover_box-shadow;
                 cursor: pointer;
                 outline: none; // prevent default outline from user agent stylesheet
             }
             &:disabled {
-                background: $color-GBC02;
-                color: $color-BL;
+                background: $btn-primary-ghost_disabled_background;
+                color: $btn-primary-ghost_disabled_color;
                 border: none;
-                box-shadow: inset 0 0 0 1px $color-GBC02;
+                box-shadow: inset 0 0 0 1px $btn-primary-ghost_disabled_box-shadow;
             }
         } @else if $type == destructive {
-            background: $color-VER;
-            color: $color-BL;
-            box-shadow: inset 0 0 0 1px $color-VERF01;
+            background: $btn-destructive_background;
+            color: $btn-destructive_color;
+            box-shadow: inset 0 0 0 1px $btn-destructive_box-shadow;
             &:hover,
             &:focus {
-                background: $color-VERF01;
-                color: $color-BL;
-                box-shadow: inset 0 0 0 1px $color-VERF01;
+                background: $btn-destructive_hover_background;
+                color: $btn-destructive_hover_color;
+                box-shadow: inset 0 0 0 1px $btn-destructive_hover_box-shadow;
                 cursor: pointer;
                 outline: none; // prevent default outline from user agent stylesheet
             }
             &:disabled {
-                background: $color-GBC02;
-                color: $color-BL;
+                background: $btn-destructive_disabled_background;
+                color: $btn-destructive_disabled_color;
                 border: none;
-                box-shadow: inset 0 0 0 1px $color-GBC02;
+                box-shadow: inset 0 0 0 1px $btn-destructive_disabled_box-shadow;
             }
         } @else {
             @error "Type not known #{$type}";
